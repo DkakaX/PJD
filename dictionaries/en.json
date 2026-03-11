@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact",
+    "rfq": "RFQ Form"
+  },
+  "home": {
+    "badge": "Global Premiere Distributor",
+    "title_primary": "Powering the Future with",
+    "title_highlight": "Premium Components",
+    "description": "Direct access to millions of electronic parts. From shortage ICs to passive components, we deliver quality, speed, and reliability.",
+    "btn_catalog": "Explore Catalog",
+    "btn_bom": "Upload BOM",
+    "trust": "TRUSTED BY GLOBAL INNOVATORS"
+  },
+  "footer": {
+    "desc": "Your reliable global distributor for semiconductors, active and passive electronic components.",
+    "products_heading": "Products",
+    "company_heading": "Company",
+    "contact_heading": "Contact Us",
+    "hq": "Global Headquarters",
+    "btn_whatsapp": "WhatsApp Us",
+    "rights": "© 2026 NexComponents. All rights reserved."
+  }
+}

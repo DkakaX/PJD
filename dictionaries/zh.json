@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "products": "产品中心",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "rfq": "获取报价"
+  },
+  "home": {
+    "badge": "全球顶级电子元器件分销商",
+    "title_primary": "以卓越品质，驱动",
+    "title_highlight": "未来科技",
+    "description": "直接连接数以百万计的电子元器件。从紧缺 IC 到无源器件，我们提供高质量、高速度与高可靠性的供应服务。",
+    "btn_catalog": "探索产品目录",
+    "btn_bom": "上传BOM获取报价",
+    "trust": "全球创新企业信赖之选"
+  },
+  "footer": {
+    "desc": "您值得信赖的全球半导体、主动与被动电子元器件分销商。",
+    "products_heading": "主营产品",
+    "company_heading": "公司概况",
+    "contact_heading": "联系我们",
+    "hq": "全球总部",
+    "btn_whatsapp": "WhatsApp 沟通",
+    "rights": "© 2026 NexComponents. 保留所有权利."
+  }
+}
