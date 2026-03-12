@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <main className="container pb-4" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
       <div className="text-center mb-4" style={{ marginBottom: '4rem' }}>
-        <h1 className="text-gradient-primary" style={{ fontSize: '3rem', marginBottom: '1rem' }}>About NexComponents</h1>
+        <h1 className="text-gradient-primary" style={{ fontSize: '3rem', marginBottom: '1rem' }}>About PJD Electronics</h1>
         <p className="text-secondary" style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.2rem' }}>
           We bridge the gap between global electronic component shortages and mission-critical production lines.
         </p>
@@ -19,7 +19,7 @@ export default function AboutPage() {
         <div style={{ padding: '3rem' }}>
           <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--accent)' }}>Our Mission</h2>
           <p className="text-secondary" style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-            Founded in the heart of the global electronics hub, NexComponents is dedicated to sourcing, inspecting, and delivering hard-to-find, obsolete, and highly demanded electronic components to manufacturers worldwide.
+            Founded in the heart of the global electronics hub, PJD Electronics is dedicated to sourcing, inspecting, and delivering hard-to-find, obsolete, and highly demanded electronic components to manufacturers worldwide.
           </p>
           <p className="text-secondary" style={{ fontSize: '1.1rem' }}>
             Our dynamic inventory model and strict QA processes guarantee that the parts you receive are 100% authentic and delivered on time.

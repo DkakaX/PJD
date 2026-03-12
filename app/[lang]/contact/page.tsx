@@ -11,13 +11,13 @@ export default function ContactPage() {
           <div className="glass-panel" style={{ padding: '2.5rem', marginBottom: '2rem' }}>
             <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>Direct Contact</h3>
             <p className="text-secondary" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <strong>Email:</strong> sales@nexcomponents.com
+              <strong>Email:</strong> ouyanghaobang@cozysheep.tech
             </p>
             <p className="text-secondary" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <strong>Phone:</strong> +1 (555) 123-4567
+              <strong>Phone:</strong> +852 68102591 / +86 13723711356
             </p>
             <p className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <strong>WhatsApp:</strong> +1 (555) 987-6543
+              <strong>WhatsApp:</strong> +852 68102591 / +86 13723711356
             </p>
             <a href="#" className="btn-primary" style={{ marginTop: '2rem', width: '100%', textAlign: 'center' }}>Chat on WhatsApp</a>
           </div>
@@ -25,9 +25,9 @@ export default function ContactPage() {
           <div className="glass-panel" style={{ padding: '2.5rem' }}>
             <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>Global HQ</h3>
             <p className="text-secondary" style={{ lineHeight: '1.8' }}>
-              NexComponents Headquarters<br />
-              High-Tech Industrial Park, Building 4<br />
-              Shenzhen, China, 518057
+              PJD Electronics Headquarters<br />
+              Huaqiangbei SEG Technology Park<br />
+              Shenzhen, China
             </p>
           </div>
         </div>

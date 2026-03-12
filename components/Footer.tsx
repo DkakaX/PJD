@@ -11,7 +11,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
       <div className="container footer-content">
         <div className="footer-brand">
           <Link href={`/${lang}`} className="brand-logo mb-1">
-            <span className="text-gradient-primary">Nex</span>Components
+            <span className="text-gradient-primary">PJD</span> Electronics
           </Link>
           <p className="footer-desc text-secondary mt-1">
             {dict.footer.desc}
@@ -44,11 +44,11 @@ export default async function Footer({ lang }: { lang: Locale }) {
 
         <div className="footer-contact">
           <h4>{dict.footer.contact_heading}</h4>
-          <p className="text-secondary mb-05">Email: sales@nexcomponents.com</p>
-          <p className="text-secondary mb-05">Phone: +1 (555) 123-4567</p>
+          <p className="text-secondary mb-05">Email: ouyanghaobang@cozysheep.tech</p>
+          <p className="text-secondary mb-05">Phone: +852 68102591 / +86 13723711356</p>
           <p className="text-secondary mt-1">
             {dict.footer.hq}<br/>
-            Tech Dist., Shenzhen, China
+            Huaqiangbei SEG Technology Park, Shenzhen
           </p>
           <div className="mt-2">
             <Link href={`/${lang}/contact`} className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>

@@ -11,7 +11,7 @@ export default async function Header({ lang }: { lang: Locale }) {
     <header className="site-header glass-panel">
       <div className="container header-content">
         <Link href={`/${lang}`} className="brand-logo">
-          <span className="text-gradient-primary">Nex</span>Components
+          <span className="text-gradient-primary">PJD</span> Electronics
         </Link>
         
         <div className="header-search">
