@@ -1,52 +1,96 @@
-export default function ContactPage() {
+import { getDictionary } from '@/get-dictionary'
+import type { Locale } from '@/i18n-config'
+
+type Props = { params: Promise<{ lang: string }> }
+
+export default async function ContactPage({ params }: Props) {
+  const lang = (await params).lang as Locale
+  const dict = await getDictionary(lang)
+  const c = dict.contact
+
   return (
     <main className="container" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 className="text-gradient-primary" style={{ fontSize: '3rem', marginBottom: '1rem' }}>Contact Us</h1>
-        <p className="text-secondary" style={{ fontSize: '1.2rem' }}>Have questions? Need urgent RFQ? Our team is online 24/7.</p>
+        <h1 className="text-gradient-primary" style={{ fontSize: '3rem', marginBottom: '1rem' }}>{c.title}</h1>
+        <p className="text-secondary" style={{ fontSize: '1.2rem' }}>{c.subtitle}</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem' }}>
-        <div className="contact-info">
-          <div className="glass-panel" style={{ padding: '2.5rem', marginBottom: '2rem' }}>
-            <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>Direct Contact</h3>
-            <p className="text-secondary" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <strong>Email:</strong> ouyanghaobang@cozysheep.tech
+        {/* Left: Contact Info */}
+        <div>
+          <div className="glass-panel" style={{ padding: '2.5rem', marginBottom: '2rem', borderRadius: 'var(--radius-lg)' }}>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent)', fontSize: '1.1rem', fontWeight: 700 }}>{c.direct_title}</h3>
+            <p className="text-secondary" style={{ marginBottom: '1rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span>📧</span><span>ouyanghaobang@cozysheep.tech</span>
             </p>
-            <p className="text-secondary" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <strong>Phone:</strong> +852 68102591 / +86 13723711356
+            <p className="text-secondary" style={{ marginBottom: '1rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span>📞</span><span>+852 68102591 / +86 13723711356</span>
             </p>
-            <p className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <strong>WhatsApp:</strong> +852 68102591 / +86 13723711356
+            <p className="text-secondary" style={{ marginBottom: '2rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+              <span>💬</span><span>+852 68102591 (WhatsApp)</span>
             </p>
-            <a href="#" className="btn-primary" style={{ marginTop: '2rem', width: '100%', textAlign: 'center' }}>Chat on WhatsApp</a>
+            <a
+              href="https://wa.me/85268102591"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{ display: 'block', textAlign: 'center' }}
+            >
+              {c.whatsapp_btn}
+            </a>
+            <p className="text-secondary" style={{ textAlign: 'center', fontSize: '0.8rem', marginTop: '0.75rem' }}>{c.response_time}</p>
           </div>
 
-          <div className="glass-panel" style={{ padding: '2.5rem' }}>
-            <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>Global HQ</h3>
-            <p className="text-secondary" style={{ lineHeight: '1.8' }}>
-              PJD Electronics Headquarters<br />
-              Huaqiangbei SEG Technology Park<br />
-              Shenzhen, China
+          <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: 'var(--radius-lg)' }}>
+            <h3 style={{ marginBottom: '1rem', color: 'var(--accent)', fontSize: '1.1rem', fontWeight: 700 }}>{c.hq_title}</h3>
+            <p className="text-secondary" style={{ display: 'flex', gap: '0.75rem' }}>
+              <span>📍</span><span>{c.hq_address}</span>
             </p>
           </div>
         </div>
 
-        <div className="contact-form glass-panel" style={{ padding: '3rem' }}>
-          <h2 style={{ marginBottom: '2rem' }}>Send a Message</h2>
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              <input type="text" placeholder="First Name" required style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', padding: '1rem', color: '#fff', borderRadius: 'var(--radius-md)' }} />
-              <input type="text" placeholder="Last Name" style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', padding: '1rem', color: '#fff', borderRadius: 'var(--radius-md)' }} />
+        {/* Right: Contact Form */}
+        <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: 'var(--radius-lg)' }}>
+          <h3 style={{ marginBottom: '2rem', fontWeight: 700, fontSize: '1.2rem' }}>{c.form_title}</h3>
+          <form
+            action={`mailto:ouyanghaobang@cozysheep.tech?subject=Inquiry from website`}
+            method="get"
+            encType="text/plain"
+            style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
+          >
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem' }}>{c.form_name}</label>
+                <input name="name" placeholder={c.form_placeholder_name} style={inputStyle} />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem' }}>{c.form_company}</label>
+                <input name="company" placeholder={c.form_placeholder_company} style={inputStyle} />
+              </div>
             </div>
-            <input type="email" placeholder="Business Email" required style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', padding: '1rem', color: '#fff', borderRadius: 'var(--radius-md)' }} />
-            <input type="text" placeholder="Company Name" style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', padding: '1rem', color: '#fff', borderRadius: 'var(--radius-md)' }} />
-            <textarea placeholder="How can we help? (Include Part Number, Qty, Target Price...)" required rows={5} style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', padding: '1rem', color: '#fff', borderRadius: 'var(--radius-md)', resize: 'vertical' }}></textarea>
-            
-            <button type="button" className="btn-primary" style={{ padding: '1rem', fontSize: '1.1rem', marginTop: '1rem' }}>Send Message</button>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem' }}>{c.form_email}</label>
+              <input name="email" type="email" placeholder={c.form_placeholder_email} style={inputStyle} />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.9rem' }}>{c.form_message}</label>
+              <textarea name="body" rows={5} placeholder={c.form_placeholder_message} style={{ ...inputStyle, resize: 'vertical' }} />
+            </div>
+            <button type="submit" className="btn-primary">{c.form_submit}</button>
           </form>
         </div>
       </div>
     </main>
-  );
+  )
+}
+
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  padding: '0.75rem 1rem',
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid var(--border-color)',
+  borderRadius: 'var(--radius-md)',
+  color: 'var(--text-primary)',
+  fontSize: '0.95rem',
+  outline: 'none',
 }
