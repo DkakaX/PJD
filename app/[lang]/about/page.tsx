@@ -1,66 +1,75 @@
-import Link from 'next/link';
+import { getDictionary } from '@/get-dictionary'
+import type { Locale } from '@/i18n-config'
 
-import Image from 'next/image';
+type Props = { params: Promise<{ lang: string }> }
 
-export default function AboutPage() {
+export default async function AboutPage({ params }: Props) {
+  const lang = (await params).lang as Locale
+  const dict = await getDictionary(lang)
+  const a = dict.about
+
+  const stats = [
+    { value: a.stat1_value, label: a.stat1_label },
+    { value: a.stat2_value, label: a.stat2_label },
+    { value: a.stat3_value, label: a.stat3_label },
+    { value: a.stat4_value, label: a.stat4_label },
+  ]
+
+  const qualities = [
+    { icon: '🔬', title: a.q1_title, desc: a.q1_desc },
+    { icon: '🛡️', title: a.q2_title, desc: a.q2_desc },
+    { icon: '📋', title: a.q3_title, desc: a.q3_desc },
+    { icon: '✅', title: a.q4_title, desc: a.q4_desc },
+  ]
+
   return (
-    <main className="container pb-4" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
-      <div className="text-center mb-4" style={{ marginBottom: '4rem' }}>
-        <h1 className="text-gradient-primary" style={{ fontSize: '3rem', marginBottom: '1rem' }}>About PJD Electronics</h1>
-        <p className="text-secondary" style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.2rem' }}>
-          We bridge the gap between global electronic component shortages and mission-critical production lines.
-        </p>
+    <main className="container" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
+      {/* Hero */}
+      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <h1 className="text-gradient-primary" style={{ fontSize: '3rem', marginBottom: '1rem' }}>{a.title}</h1>
+        <p className="text-secondary" style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.2rem' }}>{a.subtitle}</p>
       </div>
 
-      <div className="glass-panel" style={{ overflow: 'hidden', padding: '0', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', alignItems: 'stretch', marginBottom: '4rem', borderRadius: 'var(--radius-lg)' }}>
-        <div style={{ position: 'relative', minHeight: '400px' }}>
-           <Image src="/images/warehouse.png" alt="Warehouse Inventory" fill style={{ objectFit: 'cover' }} />
-        </div>
-        <div style={{ padding: '3rem' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--accent)' }}>Our Mission</h2>
-          <p className="text-secondary" style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-            Founded in the heart of the global electronics hub, PJD Electronics is dedicated to sourcing, inspecting, and delivering hard-to-find, obsolete, and highly demanded electronic components to manufacturers worldwide.
-          </p>
-          <p className="text-secondary" style={{ fontSize: '1.1rem' }}>
-            Our dynamic inventory model and strict QA processes guarantee that the parts you receive are 100% authentic and delivered on time.
-          </p>
-          <div style={{ display: 'flex', gap: '3rem', marginTop: '2.5rem' }}>
-             <div>
-                <div style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--primary)' }}>10M+</div>
-                <div className="text-secondary" style={{ fontSize: '0.9rem' }}>Components</div>
-             </div>
-             <div>
-                <div style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--accent)' }}>0%</div>
-                <div className="text-secondary" style={{ fontSize: '0.9rem' }}>Counterfeit</div>
-             </div>
+      {/* Mission + Stats */}
+      <div className="glass-panel" style={{ padding: '3rem', marginBottom: '4rem', borderRadius: 'var(--radius-lg)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+          <div>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--accent)' }}>{a.mission_title}</h2>
+            <p className="text-secondary" style={{ fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '1rem' }}>{a.mission_p1}</p>
+            <p className="text-secondary" style={{ fontSize: '1.05rem', lineHeight: '1.7' }}>{a.mission_p2}</p>
           </div>
-        </div>
-      </div>
-
-      <div className="text-center" id="quality" style={{ marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Strict Quality Control</h2>
-        <p className="text-secondary" style={{ maxWidth: '600px', margin: '0 auto 3rem', fontSize: '1.1rem' }}>Every component passes through our certified lab testing before shipment.</p>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', textAlign: 'left' }}>
-          <div className="glass-panel" style={{ position: 'relative', minHeight: '300px', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-             <Image src="/images/qa.png" alt="QA Inspection" fill style={{ objectFit: 'cover' }} />
-          </div>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-            {[
-              { title: 'Visual Inspection', desc: 'High-resolution microscopy to check for resurfacing and pin damages.' },
-              { title: 'X-Ray Testing', desc: 'Non-destructive internal die and wire bond verifications.' },
-              { title: 'Decapsulation', desc: 'Chemical etching to expose and verify the original manufacturer die.' },
-              { title: 'Solderability', desc: 'Ensuring components meet modern PCB assembly heat tolerances.' }
-            ].map(q => (
-              <div key={q.title} className="glass-panel" style={{ padding: '2rem' }}>
-                <h3 style={{ color: 'var(--accent)', marginBottom: '1rem' }}>{q.title}</h3>
-                <p className="text-secondary">{q.desc}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            {stats.map((s) => (
+              <div key={s.label} style={{ textAlign: 'center', padding: '1.5rem', background: 'rgba(255,255,255,0.04)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '0.4rem' }}>{s.value}</div>
+                <div className="text-secondary" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Quality Control */}
+      <div style={{ marginBottom: '4rem' }}>
+        <h2 className="text-gradient-primary" style={{ fontSize: '2rem', fontWeight: 800, textAlign: 'center', marginBottom: '0.75rem' }}>{a.quality_title}</h2>
+        <p className="text-secondary" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>{a.quality_subtitle}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.5rem' }}>
+          {qualities.map((q) => (
+            <div key={q.title} className="glass-panel" style={{ padding: '2rem 1.5rem', borderRadius: 'var(--radius-lg)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{q.icon}</div>
+              <h3 style={{ fontWeight: 700, marginBottom: '0.75rem' }}>{q.title}</h3>
+              <p className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.65' }}>{q.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Certifications */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+        {[a.cert_iso, a.cert_rohs, a.cert_reach].map((c) => (
+          <span key={c} style={{ padding: '0.5rem 1.5rem', border: '1px solid var(--accent)', borderRadius: 'var(--radius-full)', color: 'var(--accent)', fontSize: '0.9rem', fontWeight: 600 }}>{c}</span>
+        ))}
+      </div>
     </main>
-  );
+  )
 }
